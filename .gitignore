@@ -1,0 +1,4 @@
+build
+cython/*.c
+*.egg-info
+calculate_cdpp.so
