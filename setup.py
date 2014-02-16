@@ -15,4 +15,5 @@ setup(
         author_email='s.r.walker101@googlemail.com',
         version='0.0.1',
         ext_modules = cythonize(exts),
+        install_requires=['cython', ],
         )
