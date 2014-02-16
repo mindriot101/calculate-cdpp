@@ -57,7 +57,8 @@ double std(double *data, int N) {
 void normalise(double *data, int N) {
     double mean_value = mean(data, N);
     for (int i=0; i<N; ++i) {
-        data[i] -= mean_value;
+        data[i] /= mean_value;
+        data[i] -= 1.0;
     }
 }
 
