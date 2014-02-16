@@ -7,8 +7,6 @@ exts = Extension('calculate_cdpp', ['cython/calculate_cdpp.pyx',
     'src/calculate_cdpp.c'],
                 libraries=['cfitsio'],
                 include_dirs=[get_include(), 'include'],
-                extra_compile_args=['-fPIC'],
-                extra_link_args=['-fPIC'],
                 )
 
 setup(
