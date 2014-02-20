@@ -15,7 +15,8 @@ void fits_check(int status) {
 
 void wd2jd(double *hjd, int N) {
     double jd_ref = 2453005.5;
-    for (int i=0; i<N; ++i) {
+    int i;
+    for (i=0; i<N; ++i) {
         hjd[i] = (hjd[i] / 86400.0) + jd_ref;
     }
 }
@@ -35,7 +36,8 @@ int compare(const void *a, const void *b) {
 
 double mean(double *data, int N) {
     double total = 0;
-    for (int i=0; i<N; ++i) {
+    int i;
+    for (i=0; i<N; ++i) {
         total += data[i];
     }
     return total / (double)N;
@@ -43,7 +45,8 @@ double mean(double *data, int N) {
 
 double _std(double *data, int N, double mean) {
     double total = 0;
-    for (int i=0; i<N; ++i) {
+    int i;
+    for (i=0; i<N; ++i) {
         total += SQ(data[i] - mean);
     }
     return sqrt(total / (double)N);
@@ -56,7 +59,8 @@ double std(double *data, int N) {
 
 void normalise(double *data, int N) {
     double mean_value = mean(data, N);
-    for (int i=0; i<N; ++i) {
+    int i;
+    for (i=0; i<N; ++i) {
         data[i] /= mean_value;
         data[i] -= 1.0;
     }
@@ -73,13 +77,16 @@ void calculate_cdpp(double *hjd, double *flux, int N, double timescale_hours,
     double timescale_days = timescale_hours / 24.;
     double *cdpp_history = malloc(N * sizeof(double));
 
-    for (int i=0; i<N; ++i) {
+    int i, j;
+    for (i=0; i<N; ++i) {
         double time_before = hjd[i] - timescale_days / 2.0;
         double time_after = hjd[i] + timescale_days / 2.0;
 
         long npts_in_bin = 0;
         double *within_bin = malloc(N * sizeof(double));
-        for (int j=0; j<N; ++j) {
+
+
+        for (j=0; j<N; ++j) {
             if ((hjd[j] >= time_before) && (hjd[j] <= time_after)) {
                 within_bin[npts_in_bin++] = flux[j];
             }
